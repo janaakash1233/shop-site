@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+</head>
+<body>
+    <header>
+        <div class="nav container">
+            <i class="bx bx-menu" id="menu-icon"></i>
+        </div>
+    </header>
+
+    <section class="cart-container container">
+        <a href="index.html" class="back-homepage">
+            <i class='bx bx-chevron-left'></i>
+            <button>Back To Home</button>
+        </a>
+        <h2 class="cart-s-title">Shopping Cart</h2>
+        <div class="cart-box">
+            <div class="cart-data" id="cartItems">
+                <!-- Cart items will be displayed here -->
+            </div>
+            <div class="cart-t">
+                <div id="cartTotal"></div>
+                <a href="#" class="checkout-btn"><h3>Payment</h3></a>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+    </script>
+    <script>
+        // Add to Cart functionality
+        const addToCartButtons = document.querySelectorAll(".add-to-cart");
+    
+        addToCartButtons.forEach(button => {
+            button.addEventListener("click", (e) => {
+                const item = {
+                    title: e.target.dataset.title,
+                    price: e.target.dataset.price,
+                    image: e.target.dataset.image,
+                    quantity: 1
+                };
+    
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+                // Check if item is already in cart
+                const itemIndex = cart.findIndex(i => i.title === item.title);
+    
+                if (itemIndex > -1) {
+                    // Update quantity if item already in cart
+                    cart[itemIndex].quantity += 1;
+                } else {
+                    // Add new item to cart
+                    cart.push(item);
+                }
+    
+                // Save updated cart to localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+    
+                alert(`${item.title} has been added to the cart.`);
+            });
+        });
+    </script>
+</body>
+</html>

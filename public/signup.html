@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .signup-form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .signup-form h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .signup-form label {
+            display: block;
+            font-size: 16px;
+            margin: 10px 0 5px;
+        }
+        .signup-form input {
+            display: block;
+            width: calc(100% - 22px);
+            margin: 10px auto;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+        .signup-form button {
+            width: 100%;
+            padding: 14px;
+            background: #ff7e5f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .signup-form button:hover {
+            background: #feb47b;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        #error-message {
+            color: red;
+            margin-top: 20px;
+        }
+        a {
+            color: #ff7e5f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .login-link {
+            margin-top: 20px;
+            display: block;
+        }
+        @media (max-width: 480px) {
+            .signup-form {
+                padding: 20px;
+            }
+            .signup-form input {
+                width: calc(100% - 20px);
+            }
+            .signup-form button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-form">
+        <h1>Sign Up</h1>
+        <form id="signup-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Sign Up</button>
+            <p id="error-message"></p>
+        </form>
+        <p><a href="/login" class="login-link">Already have an account? Log in here</a></p>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert(result.message);
+                    window.location.href = '/login'; // Redirect to login page after signup
+                } else {
+                    document.getElementById('error-message').textContent = result.errors
+                        ? result.errors.map(error => error.msg).join(', ')
+                        : result.message || 'An error occurred.';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('error-message').textContent = 'An error occurred. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>

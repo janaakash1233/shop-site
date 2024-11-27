@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids' Section</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Product Card */
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-card h2 {
+            font-size: 1.5em;
+            margin: 15px 0;
+        }
+
+        .price {
+            font-size: 1.25em;
+            color: #007bff;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-bottom: 15px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kids' Collection</h1>
+    </header>
+
+    <main class="product-grid">
+        <div class="product-card">
+            <img src="https://example.com/kids-product1.jpg" alt="Cartoon T-shirt">
+            <h2>Cartoon T-shirt</h2>
+            <p class="price">₹500</p>
+            <button class="add-to-cart" data-title="Cartoon T-shirt" data-price="500" data-image="https://example.com/kids-product1.jpg">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://example.com/kids-product2.jpg" alt="Kids Sneakers">
+            <h2>Kids Sneakers</h2>
+            <p class="price">₹1500</p>
+            <button class="add-to-cart" data-title="Kids Sneakers" data-price="1500" data-image="https://example.com/kids-product2.jpg">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://example.com/kids-product3.jpg" alt="Toy Set">
+            <h2>Toy Set</h2>
+            <p class="price">₹800</p>
+            <button class="add-to-cart" data-title="Toy Set" data-price="800" data-image="https://example.com/kids-product3.jpg">Add to Cart</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Store Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Add to Cart functionality
+        const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener("click", (e) => {
+                const item = {
+                    title: e.target.dataset.title,
+                    price: e.target.dataset.price,
+                    image: e.target.dataset.image,
+                    quantity: 1
+                };
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                // Check if item is already in cart
+                const itemIndex = cart.findIndex(i => i.title === item.title);
+
+                if (itemIndex > -1) {
+                    // Update quantity if item already in cart
+                    cart[itemIndex].quantity += 1;
+                } else {
+                    // Add new item to cart
+                    cart.push(item);
+                }
+
+                // Save updated cart to localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                alert(`${item.title} has been added to the cart.`);
+            });
+        });
+    </script>
+</body>
+</html>

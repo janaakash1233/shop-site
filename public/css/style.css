@@ -1,0 +1,836 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800;900&display=swap');
+
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  font-family: 'Big Shoulders Text', sans-serif;
+  color: #333;
+  background-color: #f4f4f9;
+}
+
+:root {
+  --primary-color: #273fa1;
+  --secondary-color: #1827b0;
+  --accent-color: #ff6600;
+  --text-color: #333;
+  --bg-color: #ffffff;
+  --border-color: #e0e0e0;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  background-color: var(--bg-color);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.navbar {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+.nav-link.active {
+  color: var(--accent-color);
+}
+
+#menu-icon {
+  display: none;
+}
+
+.cart-link {
+  position: relative;
+}
+
+#cart-icon {
+  font-size: 2rem; /* Increase the icon size */
+  color: var(--primary-color);
+  cursor: pointer;
+  position: relative; /* Needed for the badge positioning */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+#cart-icon:hover {
+  color: var(--accent-color); /* Change color on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Cart Icon Badge */
+#cart-icon::after {
+  content: attr(data-quantity);
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: var(--accent-color);
+  color: #fff;
+  width: 24px; /* Adjusted size */
+  height: 24px; /* Adjusted size */
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px; /* Vertically center text */
+  font-size: 0.9rem; /* Adjust font size */
+  font-weight: 700; /* Bold text for visibility */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+#cart-icon[data-quantity="0"]::after {
+  display: none; /* Hide badge when quantity is 0 */
+}
+
+#cart-icon::after {
+  transform: scale(0.9); /* Slightly smaller by default */
+}
+
+#cart-icon:hover::after {
+  background-color: var(--primary-color); /* Change badge color on icon hover */
+  transform: scale(1.1); /* Enlarge badge on hover */
+}
+/* Home Section */
+/* Home Section */
+/* Home Section */
+.home {
+  padding: 80px 20px; /* Adjust padding for better spacing */
+  background-color: var(--bg-color);
+  text-align: center;
+  overflow: hidden; /* Ensure no overflow issues with the image */
+}
+
+.home h1 {
+  font-size: 2.5rem; /* Increase font size for prominence */
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 700; /* Make the heading bold */
+}
+
+.home p {
+  font-size: 1.2rem; /* Increase font size for readability */
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  line-height: 1.6; /* Improved line spacing for readability */
+  max-width: 700px; /* Restrict width for better text alignment */
+  margin-left: auto; /* Center align text */
+  margin-right: auto; /* Center align text */
+}
+
+.home-img {
+  position: relative; /* Make it a positioning context for its children */
+  width: 100%; /* Full width of the container */
+  overflow: hidden; /* Hide overflow for better appearance */
+  border-radius: 15px; /* Optional: Add rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for depth */
+}
+
+.home-img img {
+  display: block; /* Remove extra space below the image */
+  width: 100%; /* Fill the width of the container */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the container while maintaining aspect ratio */
+  border-radius: 15px; /* Rounded corners to match container */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .home h1 {
+    font-size: 2rem; /* Slightly smaller heading font size on smaller screens */
+  }
+
+  .home p {
+    font-size: 1rem; /* Slightly smaller paragraph font size */
+  }
+}
+
+@media (max-width: 576px) {
+  .home {
+    padding: 60px 10px; /* Adjust padding for very small screens */
+  }
+
+  .home h1 {
+    font-size: 1.8rem; /* Smaller heading font size */
+  }
+
+  .home p {
+    font-size: 0.9rem; /* Smaller paragraph font size */
+  }
+}
+
+/* Products Section */
+.products {
+  padding: 50px 0;
+  background-color: #f9f9f9;
+}
+
+.heading {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: var(--bg-color);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-title {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.product-price {
+  color: var(--accent-color);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.product-card .add-to-cart-btn {
+  margin-top: auto;
+  background-color: var(--accent-color);
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.product-card .add-to-cart-btn:hover {
+  background-color: #ff5500;
+  transform: scale(1.05);
+}
+
+/* Buttons */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.primary-btn {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.primary-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.accent-btn {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+.accent-btn:hover {
+  background-color: #ff5500;
+}
+
+/* Cart Items Section */
+.cart-container {
+  padding: 50px 0;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 150px 2fr 1fr 100px;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+}
+
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+/* Cart Item Title */
+.cart-item-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-color);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cart-item-title:hover {
+  color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+/* Cart Item Price */
+.cart-item-price {
+  color: var(--accent-color);
+  font-size: 1.6rem;
+  font-weight: 700;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.cart-item-price:hover {
+  color: #ff5500; /* Slightly darker shade */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Quantity */
+/* Quantity Container */
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 5px; /* Padding for spacing */
+  border-radius: 10px; /* Rounded corners */
+  background-color: var(--bg-color); /* Light background color for default state */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.quantity:hover {
+  background-color: var(--hover-bg-color); /* Different color on hover */
+  border-radius: 10px; /* Consistent rounded corners */
+  transform: scale(1.02) rotate(1deg); /* Slight zoom and rotation effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+/* Quantity Input */
+.quantity input {
+  width: 60px; /* Increased width */
+  height: 60px; /* Increased height */
+  text-align: center;
+  font-size: 1.6rem; /* Larger font size */
+  border: 2px solid var(--border-color);
+  border-radius: 12px; /* More rounded corners */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  background-color: #fff; /* Background color for inputs */
+}
+
+.quantity input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 8px var(--accent-color); /* Slightly larger shadow on focus */
+  transform: scale(1.05); /* Slight zoom on focus */
+}
+
+.quantity input:hover {
+  border-color: var(--primary-color);
+  background-color: var(--hover-bg-color); /* Different background color on hover */
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Light shadow on hover */
+}
+
+/* Ensure you have the following variables defined in your CSS */
+:root {
+  --bg-color: #f9f9f9; /* Default background color */
+  --hover-bg-color: #e0e0e0; /* Background color on hover */
+  --border-color: #ddd; /* Default border color */
+  --primary-color: #007bff; /* Primary color for borders */
+  --accent-color: #ff5500; /* Accent color for focus and hover effects */
+}
+
+/* Footer */
+/* Footer */
+/* Footer */
+footer {
+  background-color: #1d2d50; /* Darker, stylish background color */
+  padding: 60px 20px; /* Increased padding for better spacing */
+  color: #fff;
+  border-top: 5px solid var(--accent-color); /* Accent color border on top */
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-c {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust column width */
+  gap: 20px;
+  max-width: 1200px; /* Restrict maximum width */
+  margin: 0 auto; /* Center align the grid */
+}
+
+.footer-box {
+  padding: 0 15px; /* Padding inside footer boxes */
+}
+
+.footer-box h3 {
+  font-size: 1.4rem; /* Slightly larger font size */
+  margin-bottom: 15px; /* Increased bottom margin */
+  font-weight: 700; /* Make headings bold */
+  border-bottom: 2px solid var(--accent-color); /* Bottom border for visual separation */
+  padding-bottom: 10px; /* Padding below heading */
+  position: relative;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.footer-box h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.footer-box h3:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.footer-box a {
+  color: #fff;
+  font-size: 1.1rem; /* Slightly larger font size for links */
+  margin-top: 8px;
+  display: block; /* Display block for better spacing */
+  transition: color 0.3s, padding-left 0.3s; /* Smooth transition effects */
+  padding-left: 5px; /* Indentation effect on hover */
+}
+
+.footer-box a:hover {
+  color: var(--accent-color);
+  padding-left: 15px; /* Increased padding on hover for a subtle effect */
+}
+
+.social {
+  display: flex;
+  justify-content: center; /* Center align social icons */
+  gap: 15px;
+  margin-top: 20px; /* Space above social icons */
+}
+
+.social a {
+  color: #fff;
+  font-size: 1.8rem; /* Larger icon size */
+  transition: color 0.3s, transform 0.3s; /* Smooth transition for color and transform */
+}
+
+.social a:hover {
+  color: var(--accent-color);
+  transform: scale(1.2); /* Slightly enlarge icons on hover */
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 20px;
+  color: #fff;
+  font-size: 0.9rem; /* Slightly smaller font size for copyright */
+  margin-top: 20px; /* Space above copyright text */
+  border-top: 1px solid #ddd; /* Subtle border above copyright text */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .footer-box h3 {
+    font-size: 1.2rem; /* Smaller heading font size */
+  }
+
+  .footer-box a {
+    font-size: 1rem; /* Smaller link font size */
+  }
+
+  .social {
+    gap: 10px; /* Reduced gap between social icons */
+  }
+
+  .social a {
+    font-size: 1.5rem; /* Smaller social icon size */
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-c {
+    grid-template-columns: 1fr; /* Single column layout on very small screens */
+    gap: 10px; /* Reduced gap */
+  }
+
+  .footer-box h3 {
+    font-size: 1rem; /* Smaller heading font size */
+  }
+
+  .footer-box a {
+    font-size: 0.9rem; /* Smaller link font size */
+  }
+
+  .social {
+    gap: 8px; /* Reduced gap between social icons */
+  }
+
+  .social a {
+    font-size: 1.3rem; /* Smaller social icon size */
+  }
+}
+
+/* Responsive Menu */
+#menu-icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+
+  #menu-icon {
+    display: inline-block;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+
+  .navbar.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-color);
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-link {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .home-img img {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 320px) {
+  .product-container {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-item {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .cart-item img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .cart-item-title,
+  .cart-item-price,
+  .quantity {
+    font-size: 0.9rem;
+  }
+}
+/* Add to Cart Button Styles */
+.add-to-cart {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.add-to-cart:hover {
+  background-color: #ff5500; /* Darker shade on hover */
+  transform: scale(1.05);
+}
+
+.add-to-cart.added {
+  background-color: #6c757d; /* Grey color for added state */
+  cursor: default;
+  pointer-events: none; /* Optional: Prevent further clicks */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .add-to-cart {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+/* Cart Item */
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+
+/* Cart Item Image */
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+/* Cart Item Info */
+.cart-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cart Item Title */
+.cart-item-title {
+  font-size: 1rem;
+  margin: 0 0 5px;
+  color: var(--text-color);
+}
+
+/* Cart Item Quantity Input */
+.cart-item-quantity {
+  width: 60px;
+  font-size: 0.9rem;
+}
+/* Cart Item Price */
+.cart-item-price {
+  font-size: 1.4rem; /* Slightly larger font size for better visibility */
+  font-weight: 700; /* Bolder font weight for emphasis */
+  color: var(--accent-color); /* Accent color for the price */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for better readability */
+  border-bottom: 2px solid var(--accent-color); /* Accent color border for a stylish look */
+  padding-bottom: 5px; /* Padding to create space between text and border */
+  transition: color 0.3s, text-shadow 0.3s; /* Smooth transitions for color and shadow */
+}
+
+.cart-item-price:hover {
+  color: #ff5500; /* Darker shade on hover for visual effect */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+
+/* Remove Button */
+.remove-from-cart {
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Remove Button Hover Effect */
+.remove-from-cart:hover {
+  background-color: #e04a1d;
+}
+
+/* Hover Effect for Cart Item */
+.cart-item:hover {
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.cart-item img {
+  transition: transform 0.3s;
+}
+
+.cart-item-title,
+.cart-item-price {
+  transition: text-shadow 0.3s;
+}
+
+.cart-item:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+}
+
+.cart-item:hover img {
+  transform: scale(1.1);
+}
+
+.cart-item:hover .cart-item-title,
+.cart-item:hover .cart-item-price {
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+button {
+  display: inline-block;
+  perspective: 1000px;
+}
+
+button .flip-container {
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+button:hover .flip-container {
+  transform: rotateY(180deg);
+}
+
+button .flip-container .front,
+button .flip-container .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+button .flip-container .back {
+  transform: rotateY(180deg);
+}
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+.card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+.add-to-cart.added {
+  background-color: #4caf50; /* Green color for added items */
+  color: white;
+  cursor: default;
+}
+
+.add-to-cart.added:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
